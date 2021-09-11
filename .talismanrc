@@ -1,0 +1,4 @@
+fileignoreconfig:
+- filename: sec_files/password.txt
+  checksum: f1cfc4e74637c1399a305acaf7991724f54503ec159d4f6ad969cacdfb8e04c8
+  ignore_detectors: []
