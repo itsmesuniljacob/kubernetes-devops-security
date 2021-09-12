@@ -41,3 +41,7 @@ jobs:
         vuln-type: 'os,library'
         # severity: 'CRITICAL,HIGH' --> Only checking for critical
         severity: 'CRITICAL'
+
+    - name: Docker OPA Test
+      run: |
+        docker run --rm -v $(pwd):/project openpolicyagent/conftest test --policy opa-docker-security.rego Dockerfile
