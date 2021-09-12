@@ -36,6 +36,16 @@ pipeline {
     //     sh "mvn sonar:sonar -Dsonar.projectKey=devsecops -Dsonar.host.url=http://devsecops314.eastus.cloudapp.azure.com:9000 -Dsonar.login=2a05c238ff67f0211ca5b3685a8bf44b748eaa7e"
     //   }
     // }
+    stage('Vulnerability Scan - Docker ') {
+      steps {
+        sh "mvn dependency-check:check"
+      }
+      post {
+        always {
+          dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
+        }
+      }
+    }
     stage('Docker Build and Push') {
       steps {
         withDockerRegistry([credentialsId: "docker-hub",url: ""]) {
